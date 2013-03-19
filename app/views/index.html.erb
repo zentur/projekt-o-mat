@@ -1,10 +1,12 @@
 <h3>Projekte</h3>
 <%@projects.each do |project| %>
 	<div class="span4">
-		<h5><a href="<%= project_path(project) %>"><%= project.name %></a></h5>
+		<h5><%= project.name %></h5>
 		<dl>
   		<dt>Beschreibung</dt>
   		<dd><%= project.description %></dd>
+  		<dt><br/></dt>
+  		<dd></dd>
   		<dt>Betreuender ProfessorIn</dt>
   		<dd><%= project.professor %></dd>
 		</dl>

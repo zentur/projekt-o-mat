@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
 
   has_one :semester
 
+  has_many :projekt_participants
+  has_many :projects, through: :projekt_participants
+
   def add_semester
     @active_semester = Semester.where(active: true)
     update_attribute(:semester_id, @active_semester[0].id)

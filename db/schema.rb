@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317232227) do
+ActiveRecord::Schema.define(:version => 20130319132813) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -52,6 +52,19 @@ ActiveRecord::Schema.define(:version => 20130317232227) do
     t.integer  "semester_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "max_members"
+    t.string   "professor"
+  end
+
+  create_table "projekt_participants", :force => true do |t|
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.boolean  "prio1",      :default => false
+    t.boolean  "prio2",      :default => false
+    t.boolean  "prio3",      :default => false
+    t.boolean  "hate",       :default => false
   end
 
   create_table "semesters", :force => true do |t|
@@ -64,23 +77,25 @@ ActiveRecord::Schema.define(:version => 20130317232227) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at"
+    t.string   "confirmation_token",     :limit => nil
+    t.string   "email"
+    t.string   "encrypted_password"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.boolean  "superadmin",             :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "superadmin"
     t.integer  "semester_id"
+    t.string   "vorname"
+    t.string   "nachname"
   end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

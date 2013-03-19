@@ -8,12 +8,16 @@ ProjektOMat::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   authenticated :user do
-      root :to => "dashboard#index"
+    
+
+    root :to => "dashboard#index"
   end
 
   devise_scope :user do
     root to: "devise/sessions#new"
   end
+
+  match 'project/:project_id/adduser/:user_id/prio/:project_prio' => 'projects#add_user', :as => :add_user, :via => [:get]
 
   #root :to => "devise/sessions#new"
 

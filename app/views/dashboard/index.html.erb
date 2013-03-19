@@ -1,1 +1,33 @@
-DashBoard
+<h3>DashBoard</h3>
+
+<h4>Deine gebuchten Projekte</h4>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @projects.each do |project| %>
+			<tr>
+				<td><%= project.name %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h4>Dein Hate Projekt</h4>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @hates.each do |hate| %>
+			<tr>
+				<td><%= hate.name %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

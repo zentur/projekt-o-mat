@@ -12,9 +12,99 @@
 
 <p>
   <b>Semester:</b>
-  <%= @project.semester_id %>
+  <% if @project.semester.winter == true %>
+  	Wintersemester 
+  <% else %>
+  	Sommersemester 
+  <% end %>
+  <%= @project.semester.year %>
 </p>
 
+<p>
+<% if @alreadyVoted == false %>
+	<a href="<%=add_user_path(@project.id, current_user.id, 1)%>" class="btn btn-success wrap-word">
+	  Prio 1
+	</a>
+	<a href="<%=add_user_path(@project.id, current_user.id, 2)%>" class="btn btn-info wrap-word">
+	  Prio 2
+	</a>
+	<a href="<%=add_user_path(@project.id, current_user.id, 3)%>" class="btn btn-warning wrap-word">
+	  Prio 3
+	</a>
+	<a href="<%=add_user_path(@project.id, current_user.id, 4)%>" class="btn btn-danger wrap-word">
+	  Hate!!
+	</a>
+<% end %>
+</p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<h4>Prio 1</h4>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Vorname</th>
+			<th>Nachname</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @participantUsersPrio1.each do |participant| %>
+			<tr>
+				<td><%= participant.vorname %></td>
+				<td><%= participant.nachname %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h4>Prio 2</h4>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Vorname</th>
+			<th>Nachname</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @participantUsersPrio2.each do |participant| %>
+			<tr>
+				<td><%= participant.vorname %></td>
+				<td><%= participant.nachname %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h4>Prio 3</h4>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Vorname</th>
+			<th>Nachname</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @participantUsersPrio3.each do |participant| %>
+			<tr>
+				<td><%= participant.vorname %></td>
+				<td><%= participant.nachname %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h4>Hate</h4>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Vorname</th>
+			<th>Nachname</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @participantUsersHate.each do |participant| %>
+			<tr>
+				<td><%= participant.vorname %></td>
+				<td><%= participant.nachname %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
